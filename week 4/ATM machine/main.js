@@ -49,6 +49,6 @@ function withdraw(withdrawAmount) {
   } else if (withdrawAmount > currentBalance) {
     message.innerText = "Insufficient funds";
   } else {
-    currentBalance -= depositAmount;
+    currentBalance -= withdrawAmount;
   }
 }
