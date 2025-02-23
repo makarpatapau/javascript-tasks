@@ -8,21 +8,35 @@
   </head>
   <body>
     <section>
-      <h1 id="balance">0</h1>
+      <div class="form">
+        <h1 id="balance">0</h1>
 
-      <input type="number" id="inputDeposit" placeholder="Amount to deposit:" />
+        <div class="input">
+          <input
+            type="number"
+            id="inputDeposit"
+            placeholder="Amount to deposit:"
+          />
+        </div>
 
-      <button id="depositBtn">Deposit</button>
+        <div>
+          <button id="depositBtn">Deposit</button>
+        </div>
 
-      <input
-        type="number"
-        id="inputWithdraw"
-        placeholder="Amount to withdraw:"
-      />
+        <div class="input">
+          <input
+            type="number"
+            id="inputWithdraw"
+            placeholder="Amount to withdraw:"
+          />
+        </div>
 
-      <button id="withdrawBtn">Withdraw</button>
+        <div>
+          <button id="withdrawBtn">Withdraw</button>
+        </div>
 
-      <p id="message">message</p>
+        <p id="message">message</p>
+      </div>
     </section>
     <script src="main.js"></script>
   </body>

@@ -1,0 +1,45 @@
+body {
+  background-image: url("ATM.jpg");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.form {
+  background-color: blue;
+  padding: 40px;
+  border-radius: 10px;
+  width: 200px;
+  text-align: center;
+}
+.input {
+  margin: 20px;
+}
+input {
+  font-size: 15px;
+}
+p {
+  color: rgb(64, 255, 0);
+  font-size: 20px;
+}
+h1 {
+  color: rgb(64, 255, 0);
+  font-size: 30px;
+}
+button {
+  padding: 7px;
+  border-radius: 10px;
+  background-color: aqua;
+  color: rgb(241, 0, 177);
+  cursor: pointer;
+  border: solid 1px rgb(255, 0, 179);
+  width: 100px;
+}
+#depositBtn:hover {
+  background-color: rgb(64, 255, 0);
+  transition-duration: 1s;
+}
+#withdrawBtn:hover {
+  background-color: rgb(91, 25, 25);
+  transition-duration: 1s;
+}

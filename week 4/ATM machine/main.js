@@ -48,6 +48,7 @@ function withdraw(withdrawAmount) {
     message.innerText = "Please enter a positive number";
   } else if (withdrawAmount > currentBalance) {
     message.innerText = "Insufficient funds";
+    message.style.color = "red";
   } else {
     currentBalance -= withdrawAmount;
   }
