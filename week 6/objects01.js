@@ -111,20 +111,52 @@ Define an object named `car` with properties for `brand`, `model`, `year`, and `
 Use a function to check if the car is electric. If it is, log `"This car is eco-friendly!"`. Otherwise, log `"This car runs on fuel."`
 */
 
-// Your code here
-
+const car = { brand: "Tesla", model: "X", year: 2019, isElectric: true };
+function check(car) {
+  if (car.isElectric) {
+    console.log("This car is eco-friendly!");
+  } else {
+    console.log("This car runs on fuel.");
+  }
+}
+check(car);
 /* Task 9
 Create a `movies` array where each movie is an object with properties for `title`, `director`, and `rating`.
 Write a loop that logs all movie titles with a rating higher than 8.
 */
 
-// Your code here
+const movies = [
+  { title: "Inception", director: "Christopher Nolan", rating: 8.8 },
+  { title: "Titanic", director: "James Cameron", rating: 7.8 },
+  { title: "Avatar", director: "James Cameron", rating: 7.9 },
+  {
+    title: "The Shawshank Redemption",
+    director: "Frank Darabont",
+    rating: 9.3,
+  },
+];
+
+for (const movie of movies) {
+  if (movie.rating > 8) {
+    console.log(movie.title);
+  }
+}
 
 /* Task 10
 Write a function `findOldestCar` that takes an array of car objects and returns the car with the earliest `year`.
 */
 
-// Your code here
+const cars = [
+  { brand: "Ford", year: 2015 },
+  { brand: "BMW", year: 1999 },
+  { brand: "KIA", year: 2005 },
+];
+
+function findOldestCar(cars) {
+  return cars.sort((a, b) => a.year - b.year)[0];
+}
+
+console.log(findOldestCar(cars));
 
 /* Task 11
 Define a `userProfiles` array containing objects representing users.
@@ -132,31 +164,87 @@ Each user should have a `username`, `email`, and `isAdmin` property.
 Write a function that filters and returns only the users who are administrators.
 */
 
-// Your code here
+const userProfiles = [
+  { username: "john_doe", email: "john@example.com", isAdmin: false },
+  { username: "admin_user", email: "admin@example.com", isAdmin: true },
+  { username: "jane_doe", email: "jane@example.com", isAdmin: false },
+  { username: "super_admin", email: "super@example.com", isAdmin: true },
+];
+function getAdmins(users) {
+  return users.filter((user) => user.isAdmin);
+}
+
+console.log(getAdmins(userProfiles));
 
 /* Task 12
 Define an array named `orders`, where each order contains `orderId`, `customerName`, `totalAmount`, and `status` (either "pending" or "completed").
 Write a function that returns only the completed orders.
 */
 
-// Your code here
+const orders = [
+  { orderId: 101, customerName: "Alice", totalAmount: 250, status: "pending" },
+  { orderId: 102, customerName: "Bob", totalAmount: 400, status: "completed" },
+  {
+    orderId: 103,
+    customerName: "Charls",
+    totalAmount: 150,
+    status: "completed",
+  },
+];
 
+function getCompleted(orders) {
+  return orders.filter((order) => order.status === "completed");
+}
+console.log(getCompleted(orders));
 /* Task 13
 Create an object named `smartphone` with properties for `brand`, `model`, `batteryLife`, and `is5GEnabled`.
 Write a function that logs `"This phone supports 5G!"` if `is5GEnabled` is `true`, otherwise logs `"This phone does not support 5G."`
 */
 
-// Your code here
+const smartphone = {
+  brand: "iPhone",
+  model: "16",
+  batteryLife: "95%",
+  is5GEnabled: true,
+};
+
+function check(smartphone) {
+  if (smartphone.is5GEnabled) {
+    console.log("This phone supports 5G!");
+  } else {
+    console.log("This phone does not support 5G.");
+  }
+}
+check(smartphone);
+
 /* Task 14
 Define an object named `fox` with properties `name`, `age`, and `habitat`.
 Write a function that logs `"This fox is young"` if its age is under 3, `"This fox is an adult"` if 3 or older.
 */
 
-// Your code here
+const fox = { name: "fox", age: 5, habitat: "forest" };
 
+function age(fox) {
+  if (fox.age < 3) {
+    console.log("This fox is young");
+  } else {
+    console.log("This fox is an adult");
+  }
+}
+age(fox);
 /* Task 15
 Define an array named `employees`, where each employee has `name`, `position`, and `salary`.
 Write a function that calculates the total salary of all employees in the company.
 */
 
-// Your code here
+const employees = [
+  { name: "Daniel", position: "CEO", salary: 5000 },
+  { name: "Emma", position: "CMO", salary: 4000 },
+  { name: "Robert", position: "Accountant", salary: 3000 },
+];
+
+function salary(employees) {
+  return employees.reduce((total, employee) => total + employee.salary, 0);
+}
+
+console.log(salary(employees));
