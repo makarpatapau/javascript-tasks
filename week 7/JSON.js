@@ -39,6 +39,7 @@ and log the names of all students in the classroom.
 */
 
 const classroomParse = JSON.parse(classroomJSON);
+console.log(classroomParse.map((any) => any.name));
 
 /* Task 5
 Create an object named `weatherReport` with the following properties:
@@ -50,7 +51,11 @@ Convert the object into a JSON string and store it in a variable named `weatherJ
 Then, parse the JSON string back into an object and log the `conditions` property.
 */
 
-// Your code here
+const weatherReport = { temperature: 23, humidity: 65, conditions: "Sunny" };
+const weatherJSON = JSON.stringify(weatherReport);
+
+const newWeather = JSON.parse(weatherJSON);
+console.log(newWeather.conditions);
 
 /* Task 6
 Define an array named `movies`, where each movie has:
@@ -62,7 +67,20 @@ Convert this array into a JSON string, then parse it back into a JavaScript obje
 Log all movie titles with a rating higher than 8.
 */
 
-// Your code here
+const movies = [
+  { title: "Sunny Day", Director: "Woods", rating: 5.9 },
+  { title: "Stormy Day", Director: "Peters", rating: 9.1 },
+  { title: "Windy Day", Director: "Jameson", rating: 8.8 },
+  { title: "Rainy Day", Director: "Wellengstain", rating: 7.9 },
+];
+
+const moviesJSON = JSON.stringify(movies);
+const parseMovies = JSON.parse(moviesJSON);
+console.log(
+  parseMovies
+    .filter((movie) => movie.rating > 8)
+    .map((whatever) => whatever.title)
+);
 
 /* Task 7
 Write a function `filterHighRatedMovies(jsonString)` that:
@@ -71,7 +89,11 @@ Write a function `filterHighRatedMovies(jsonString)` that:
 - Returns a new array containing only movies with a rating higher than 8.
 */
 
-// Your code here
+function filterHighRatedMovies(moviesJSON) {
+  const jsArray = JSON.parse(moviesJSON);
+  return jsArray.filter((movie) => movie.rating > 8);
+}
+console.log(filterHighRatedMovies(moviesJSON));
 
 /* Task 8
 Define an object named `shoppingCart` with:
@@ -79,7 +101,18 @@ Define an object named `shoppingCart` with:
 Convert `shoppingCart` into a JSON string and log it to the console.
 */
 
-// Your code here
+const shoppingCart = {
+  items: [
+    { name: "bread", price: 2 },
+    { name: "milk", price: 1.6 },
+    { name: "eggs", price: 3 },
+    { name: "cheese", price: 5 },
+    { name: "yougurt", price: 2.5 },
+    { name: "meat", price: 10 },
+  ],
+};
+const JSONCart = JSON.stringify(shoppingCart);
+console.log(JSONCart);
 
 /* Task 9
 Write a function `totalCartValue(jsonString)` that:
@@ -88,7 +121,11 @@ Write a function `totalCartValue(jsonString)` that:
 - Returns the total price of all items in the cart.
 */
 
-// Your code here
+function totalCartValue() {
+  const convertBack = JSON.parse(JSONCart);
+  return convertBack.items.reduce((total, item) => total + item.price, 0);
+}
+console.log(totalCartValue());
 
 /* Task 10
 Create an object named `gameProgress` with:
@@ -101,4 +138,14 @@ Parse the JSON back into an object and update the `score` property by adding 100
 Log the updated object.
 */
 
-// Your code here
+const gameProgress = {
+  level: 5,
+  score: 250,
+  livesRemaining: 3,
+};
+
+const jsonGameProgress = JSON.stringify(gameProgress);
+console.log(jsonGameProgress);
+const backGameProgress = JSON.parse(jsonGameProgress);
+const final = (backGameProgress.score += 100);
+console.log(final);

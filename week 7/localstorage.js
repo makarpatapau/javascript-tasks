@@ -3,18 +3,26 @@ Store a string `"Hello, LocalStorage!"` in LocalStorage under the key `"message"
 Retrieve it and log it to the console.
 */
 
-// Your code here
+localStorage.setItem("message", "Hello, LocalStorage!");
+const retrieved = localStorage.getItem("message");
+console.log(retrieved);
 
 /* Task 2
-Create an object `userSettings` with:
-- `theme` ("dark" or "light")
-- `language` ("English", "Spanish", etc.)
+    Create an object `userSettings` with:
+    - `theme` ("dark" or "light")
+    - `language` ("English", "Spanish", etc.)
 
-Convert it to a JSON string and store it in LocalStorage.
-Retrieve it, parse it, and log the `theme` property.
-*/
+    Convert it to a JSON string and store it in LocalStorage.
+    Retrieve it, parse it, and log the `theme` property.
+    */
 
-// Your code here
+const userSettings = { theme: "light", language: "English" };
+const json = JSON.stringify(userSettings);
+localStorage.setItem("storage", json);
+
+const retrieve = localStorage.getItem("storage");
+const parsed = JSON.parse(retrieve);
+console.log(parsed.theme);
 
 /* Task 3
 Define an array `favoriteBooks` with at least three book objects (`title` and `author`).
@@ -22,7 +30,18 @@ Store the array in LocalStorage.
 Retrieve and parse it, then log the titles of all books.
 */
 
-// Your code here
+const favoriteBooks = [
+  { title: "Next turn", author: "Oldeman" },
+  { title: "Sandy winds", author: "Richardson" },
+  { title: "Black rose", author: "Finugreck" },
+];
+
+const stringified = JSON.stringify(favoriteBooks);
+
+localStorage.setItem("task3", stringified);
+const whatever1 = localStorage.getItem("task3");
+const books = JSON.parse(whatever1);
+console.log(books.map((any) => any.title));
 
 /* Task 4
 Write a function `saveToLocalStorage(key, object)` that:
@@ -31,7 +50,15 @@ Write a function `saveToLocalStorage(key, object)` that:
 Test it by saving an object and retrieving it.
 */
 
-// Your code here
+function saveToLocalStorage(key, object) {
+  const me = {
+    name: "Makar",
+    surname: "Patapau",
+    age: 25,
+    nationality: "Belarusian",
+  };
+  const convertedMe = JSON.stringify(me);
+}
 
 /* Task 5
 Write a function `getFromLocalStorage(key)` that:
