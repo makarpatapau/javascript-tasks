@@ -1,35 +1,3 @@
-/*
-const pancakeType = document.getElementById("type");
-const toppings = document.querySelectorAll(".topping");
-const extras = document.querySelectorAll(".extra");
-const totalPrice = document.getElementById("totalPriceDisplay");
-const banner = document.getElementById("priceBanner");
-
-const chooseType = () => {
-  let totalPrice = parseFloat(pancakeType.value);
-
-  toppings.forEach((topping) => {
-    if (topping.checked) {
-      totalPrice += parseFloat(topping.value);
-    }
-  });
-
-  extras.forEach((extra) => {
-    if (extra.checked) {
-      totalPrice += parseFloat(extra.value);
-    }
-  });
-
-  totalPriceDisplay.textContent = totalPrice + "€";
-  priceBanner.textContent = totalPrice + "€";
-};
-
-pancakeType.addEventListener("change", chooseType);
-toppings.forEach((topping) => topping.addEventListener("change", chooseType));
-extras.forEach((extra) => extra.addEventListener("change", chooseType));
-*/
-
-// the pancake 2nd
 const type = document.querySelector("#type"); // # shows that it is ID
 const toppings = document.querySelectorAll(".topping"); // . shows that it is class
 const extras = document.querySelectorAll(".extra");
@@ -38,33 +6,8 @@ const totalPriceBanner = document.querySelector("#totalPriceBanner");
 const button = document.getElementById("seeOrder");
 const customerName = document.getElementById("customerName");
 const summaryText = document.getElementById("summaryText");
-/*
-const calculateTotal = () => {
-  let totalPrice = parseFloat(pancakeType.value);
-
-  toppings.forEach((topping) => {
-    if (topping.checked) {
-      totalPrice += parseFloat(topping.value);
-    }
-  });
-
-  extras.forEach((extra) => {
-    if (extra.checked) {
-      totalPrice += parseFloat(extra.value);
-    }
-  });
-
-  totalPriceDisplay.textContent = `${totalPrice}€`;
-  totalPriceBanner.textContent = `${totalPrice}€`;
-};
-
-pancakeType.addEventListener("change", calculateTotal);
-toppings.forEach((topping) =>
-  topping.addEventListener("change", calculateTotal)
-);
-extras.forEach((extra) => extra.addEventListener("change", calculateTotal));
-
-*/
+const deliveryOptions = document.querySelectorAll(".delivery");
+const pancakeForm = document.getElementById("pancakeForm");
 
 const changeHandler = (event) => {
   console.log("Event: ", event);
@@ -73,17 +16,6 @@ const changeHandler = (event) => {
   );
 
   console.log("BasePrice: ", basePrice);
-
-  // const toppingsTotalExample = [];
-  // const checkedToppings = document.querySelectorAll(".topping:checked");
-  // checkedToppings.forEach((topping) => {
-  // toppingsTotalArray.push(topping.dataset.price);
-  // });
-
-  // toppingsTotalExample = toppingTotalArray.forEach((topping) => {
-  // let sum = 0;
-  // sum += parseFloat(topping);
-  // });      DOWN BELOW IS THE BETTER WAY OF DOING WHAT IS COMMENTED OUT HERE:
 
   const toppingsTotal = [
     ...document.querySelectorAll(".topping:checked"),
@@ -106,7 +38,31 @@ const changeHandler = (event) => {
 };
 pancakeForm.addEventListener("change", changeHandler);
 
-const retrieve = () => {
-  summaryText.textContent = "Your name: " + customerName.value;
+const retrieveOrderSummary = () => {
+  const name = customerName.value || "Unknown Customer";
+  const selectedPancake = type.selectedOptions[0].text;
+  const selectedToppings = [
+    ...document.querySelectorAll(".topping:checked"),
+  ].map((topping) => topping.parentElement.textContent.trim());
+  const selectedExtras = [...document.querySelectorAll(".extra:checked")].map(
+    (extra) => extra.parentElement.textContent.trim()
+  );
+  const selectedDelivery = [
+    ...document.querySelectorAll(".delivery:checked"),
+  ].map((delivery) => delivery.parentElement.textContent.trim())[0];
+
+  let summary = `Your name: ${name}\n`;
+  summary += `Pancake Type: ${selectedPancake}\n`;
+  summary += selectedToppings.length
+    ? `Toppings: ${selectedToppings.join(", ")}\n`
+    : "Toppings: None\n";
+  summary += selectedExtras.length
+    ? `Extras: ${selectedExtras.join(", ")}\n`
+    : "Extras: None\n";
+  summary += `Delivery Method: ${selectedDelivery}\n`;
+  summary += `Total Price: ${totalPriceDisplay.textContent}`;
+
+  summaryText.textContent = summary;
 };
-button.addEventListener("click", retrieve);
+
+button.addEventListener("click", retrieveOrderSummary);
