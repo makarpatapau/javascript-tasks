@@ -6,7 +6,7 @@ Extract `name` and `position` from the employee object.
 
 const employee = { name: "Sarah", position: "Manager", department: "HR" };
 
-// Fix this
+// Fixed
 const { name, position } = employee;
 
 console.log(name, position); // Expected: "Sarah Manager"
@@ -17,7 +17,7 @@ Extract the first two colors from the colors array.
 
 const colors = ["red", "blue", "green", "yellow"];
 
-// Fix this
+// Fixed
 const [primary, secondary] = colors;
 
 console.log(primary, secondary); // Expected: "red blue"
@@ -47,12 +47,13 @@ function getUserInfo(user) {
 }
 
 getUserInfo({ name: "Alice", role: "guest" }); // Expected: "Alice - guest"
+getUserInfo({ name: "Bob" }); // Expected: "Bob - guest" (defaults to guest)
 
 /* Task 5: Fix Function Parameters  
 Fix the function so it correctly destructures `name` and `age`.  
 */
 
-function introduce(person) {
+function introduce({ name, age }) {
   console.log(`${name} is ${age} years old.`);
 }
 
@@ -64,3 +65,9 @@ introduce({ name: "Emma", age: 28 }); // Expected: "Emma is 28 years old."
   */
 
 // Write your code here
+function logCarDetails({ brand, year }) {
+  console.log(`Brand: ${brand}, Year: ${year}`);
+}
+
+// Test case
+logCarDetails({ brand: "Toyota", year: 2020 }); // Expected: "Brand: Toyota, Year: 2020"

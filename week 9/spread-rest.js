@@ -40,14 +40,20 @@ console.log(finalSettings); // Expected: { theme: "dark", fontSize: 14 }
 Make the function work for any number of numbers.  
 */
 
-function sumNumbers(a, b) {
-  return a + b;
+function sumNumbers(...numbers) {
+  return numbers.reduce((sum, num) => sum + num, 0);
 }
 
-console.log(sumNumbers(2, 3, 4)); // Expected: 9
+console.log(sumNumbers(2, 3, 4));
 
 /* Task 5: Fix Rest Destructuring  
 Extract `title` and collect the remaining properties into `extraInfo`.  
 */
 
 const book = { title: "JavaScript Guide", pages: 400, author: "John Doe" };
+
+// Destructuring `title` and collecting the rest in `extraInfo`
+const { title, ...extraInfo } = book;
+
+console.log(title); // Expected: "JavaScript Guide"
+console.log(extraInfo); // Expected: { pages: 400, author: "John Doe" }
