@@ -51,14 +51,11 @@ Test it by saving an object and retrieving it.
 */
 
 function saveToLocalStorage(key, object) {
-  const me = {
-    name: "Makar",
-    surname: "Patapau",
-    age: 25,
-    nationality: "Belarusian",
-  };
-  const convertedMe = JSON.stringify(me);
+  const jsonString = JSON.stringify(object);
+  localStorage.setItem(key, jsonString);
 }
+
+saveToLocalStorage("user", { name: "Makar", age: 25 });
 
 /* Task 5
 Write a function `getFromLocalStorage(key)` that:
@@ -67,7 +64,19 @@ Write a function `getFromLocalStorage(key)` that:
 - Logs the retrieved value.
 */
 
-// Your code here
+function getFromLocalStorage(key) {
+  const value = localStorage.getItem(key);
+  try {
+    const parsed = JSON.parse(value);
+    console.log(parsed);
+    return parsed;
+  } catch (e) {
+    console.log(value);
+    return value;
+  }
+}
+
+getFromLocalStorage("user");
 
 /* Task 6
 Create an object `userProfile` with:
@@ -79,7 +88,20 @@ Save it to LocalStorage.
 Retrieve and update the `theme` property to `"dark mode"`, then log the updated object.
 */
 
-// Your code here
+const userProfile = {
+  username: "makar25",
+  email: "makar@example.com",
+  preferences: {
+    theme: "light",
+    notifications: true,
+  },
+};
+
+localStorage.setItem("userProfile", JSON.stringify(userProfile));
+let profile = JSON.parse(localStorage.getItem("userProfile"));
+profile.preferences.theme = "dark mode";
+localStorage.setItem("userProfile", JSON.stringify(profile));
+console.log(profile);
 
 /* Task 7
 Define an object `shoppingList` with an array `items` (strings).
@@ -91,7 +113,19 @@ Write a function `addItemToList(item)` that:
 - Logs the updated list.
 */
 
-// Your code here
+const shoppingList = {
+  items: ["milk", "bread", "eggs"],
+};
+localStorage.setItem("shoppingList", JSON.stringify(shoppingList));
+
+function addItemToList(item) {
+  const stored = JSON.parse(localStorage.getItem("shoppingList"));
+  stored.items.push(item);
+  localStorage.setItem("shoppingList", JSON.stringify(stored));
+  console.log(stored);
+}
+
+addItemToList("cheese");
 
 /* Task 8
 Create a counter object with:
@@ -104,7 +138,19 @@ Write a function `incrementCounter()` that:
 - Logs the new count.
 */
 
-// Your code here
+const counter = {
+  count: 0,
+};
+localStorage.setItem("counter", JSON.stringify(counter));
+
+function incrementCounter() {
+  const storedCounter = JSON.parse(localStorage.getItem("counter"));
+  storedCounter.count++;
+  localStorage.setItem("counter", JSON.stringify(storedCounter));
+  console.log("New count:", storedCounter.count);
+}
+
+incrementCounter();
 
 /* Task 9
 Create an array `tasks`, where each task is an object (`id`, `description`, `completed`).
@@ -116,11 +162,35 @@ Write a function `markTaskComplete(taskId)` that:
 - Logs the updated list.
 */
 
-// Your code here
+const tasks = [
+  { id: 1, description: "Do homework", completed: false },
+  { id: 2, description: "Clean room", completed: false },
+  { id: 3, description: "Buy groceries", completed: false },
+];
+localStorage.setItem("tasks", JSON.stringify(tasks));
+
+function markTaskComplete(taskId) {
+  const storedTasks = JSON.parse(localStorage.getItem("tasks"));
+  const task = storedTasks.find((t) => t.id === taskId);
+  if (task) {
+    task.completed = true;
+    localStorage.setItem("tasks", JSON.stringify(storedTasks));
+    console.log(storedTasks);
+  } else {
+    console.log("Task not found");
+  }
+}
+
+markTaskComplete(2);
 
 /* Task 10
 Write a function `clearLocalStorage()` that removes all data stored in LocalStorage.
 Call it and confirm LocalStorage is empty.
 */
 
-// Your code here
+function clearLocalStorage() {
+  localStorage.clear();
+  console.log("LocalStorage cleared.");
+}
+
+clearLocalStorage();
