@@ -7,12 +7,31 @@ Write a function named askToContinue:
 */
 
 const askToContinue = () => {
-  let number;
-  while (number !== 0) {
-    number = Number(
-      window.prompt("Do you want to continue giving numbers? (y/n)")
-    );
-    if 
+  let numbers = [];
+  let continueInput = "y";
+
+  while (continueInput.toLowerCase() === "y") {
+    let num = Number(prompt("Enter a number:"));
+
+    // Validate it's a real number
+    if (!isNaN(num)) {
+      numbers.push(num);
+    } else {
+      alert("That is not a valid number. Try again.");
+      continue;
+    }
+
+    continueInput = prompt("Do you want to continue giving numbers? (y/n)");
+  }
+
+  // Calculate and log the average
+  if (numbers.length > 0) {
+    const sum = numbers.reduce((acc, val) => acc + val, 0);
+    const avg = sum / numbers.length;
+    console.log("Average:", avg);
+  } else {
+    console.log("No numbers were entered.");
   }
 };
+
 askToContinue();

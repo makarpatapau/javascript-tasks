@@ -247,4 +247,16 @@ function salary(employees) {
   return employees.reduce((total, employee) => total + employee.salary, 0);
 }
 
-console.log(salary(employees));
+/*
+function calculateTotalSalary() {
+  let totalSalary = 0;
+
+  employees.forEach((employee) => {
+    totalSalary += employee.salary;
+  });
+
+  return totalSalary;
+}
+
+console.log(calculateTotalSalary(employees));
+*/
